@@ -26,6 +26,7 @@ public class GirlController {
     private GirlService girlService;
 
     private final Logger logger = LoggerFactory.getLogger(GirlController.class);
+
     /**
      * 查询所有女生列表
      * @return

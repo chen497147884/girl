@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>GrilList</title>
+    <script src="./static/vue.js"></script>
+    <script src="./static/vue-resource.js"></script>
+    <script src="./static/axios.js"></script>
+</head>
+<body>
+<div>
+    <table id="grilList">
+        <tr>
+            <td>ID</td><td>等级</td><td>年龄</td><td>成绩</td>
+        </tr>
+        <tr v-for="girl in girls">
+            <td>{{ girl.id }}</td>
+            <td>{{ girl.cupSize }}</td>
+            <td>{{ girl.age }}</td>
+            <td>{{ girl.money }}</td>
+        </tr>
+    </table>
+</div>
+<script>
+
+    var vm = new Vue({
+        el:"#grilList",
+        data: {
+            girls: ""
+        },
+        methods: {
+            // getGirls:function () {
+            //     axios.get('http://192.168.20.91:8089/girls', {
+            //     }, function (res) {
+            //         alert(res.data);
+            //         this.girls = res.data;
+            //     });
+            // }
+            getGirls:function () {
+                // this.$http.jsonp('https://api.douban.com//v2/movie/top250', {},
+                this.$http.jsonp('http://192.168.20.91:8089/girls', {},
+                    {
+                    headers: {},
+                    emulateJSON: true
+                    }
+                ).then(function(response){
+                    console.log(response);
+                    console.log(response.data);
+                }, function (res) {
+                    console.log(res);
+                    console.log(res.data);
+                    this.girls = res.data;
+                });
+
+                // this.$http.jsonp('https://api.douban.com//v2/movie/top250', {},
+                //     {
+                //         headers: {},
+                //         emulateJSON: true
+                //     }).then(
+                //         (response) => {
+                //         this.movie = response.data;
+                //         console.log(this.movie);
+                //     });
+            }
+        },
+        mounted:function(){
+            this.getGirls();
+        }
+    });
+</script>
+
+</body>
+</html>
