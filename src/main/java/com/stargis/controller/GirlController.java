@@ -44,7 +44,7 @@ public class GirlController {
      * @param age
      * @return
      */
-    @PostMapping(value = "/girls")
+    @PostMapping(value = "/addGirl")
     public Girl girlAdd(@RequestParam("cupSize") String cupSize,
                      @RequestParam("age") Integer age){
         Girl girl = new Girl();
@@ -58,7 +58,7 @@ public class GirlController {
      * @param girl
      * @return
      */
-    @PostMapping(value = "/girls2")
+    @PostMapping(value = "/addGirl2")
     public Girl girlAdd2(@Valid Girl girl, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.getFieldError().getDefaultMessage());
@@ -73,7 +73,7 @@ public class GirlController {
      * @param girl
      * @return
      */
-    @PostMapping(value = "/girls3")
+    @PostMapping(value = "/addGirl3")
     public Result<Girl> girlAdd3(@Valid Girl girl, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
 //            Result result = new Result();
